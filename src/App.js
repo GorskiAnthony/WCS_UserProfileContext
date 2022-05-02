@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
+import  CurrentUserContextProvider from "./provider/CurrentUserContextProvider";
 import {Routes, Route} from "react-router-dom";
 import Home from "./component/Home";
 import Profile from "./component/Profile";
@@ -6,33 +7,24 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 
 export default function App() {
-    const [currentUserName, setCurrentUserName] = useState("");
-    const [currentUserAvatar, setCurrentUserAvatar] = useState("");
 
+    /**
+     * Modification :
+     * - Header ✅
+     * - Profile ✅
+     * - Footer ✅
+     */
     return (
-        <>
-            <Header
-                currentUserAvatar={currentUserAvatar}
-                currentUserName={currentUserName}
-            />
+        <CurrentUserContextProvider>
+            <Header/>
             <main>
-
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route
-                        path="/profile"
-                        element={
-                            <Profile
-                                currentUserName={currentUserName}
-                                setCurrentUserName={setCurrentUserName}
-                                setCurrentUserAvatar={setCurrentUserAvatar}
-                                currentUserAvatar={currentUserAvatar}
-                            />
-                        }
+                    <Route path="/profile" element={<Profile/>}
                     />
                 </Routes>
             </main>
-            <Footer currentUserName={currentUserName}/>
-        </>
+            <Footer/>
+        </CurrentUserContextProvider>
     );
 }
