@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {Routes, Route} from "react-router-dom";
+import Home from "./component/Home";
+import Profile from "./component/Profile";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [currentUserName, setCurrentUserName] = useState("");
+    const [currentUserAvatar, setCurrentUserAvatar] = useState("");
+
+    return (
+        <>
+            <Header
+                currentUserAvatar={currentUserAvatar}
+                currentUserName={currentUserName}
+            />
+            <main>
+
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route
+                        path="/profile"
+                        element={
+                            <Profile
+                                currentUserName={currentUserName}
+                                setCurrentUserName={setCurrentUserName}
+                                setCurrentUserAvatar={setCurrentUserAvatar}
+                                currentUserAvatar={currentUserAvatar}
+                            />
+                        }
+                    />
+                </Routes>
+            </main>
+            <Footer currentUserName={currentUserName}/>
+        </>
+    );
 }
-
-export default App;
