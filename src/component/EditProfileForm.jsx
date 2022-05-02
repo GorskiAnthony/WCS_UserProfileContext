@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import CurrentUserContext from "../context/CurrentUserContext";
 
-const EditProfileForm = ({currentUserName, setCurrentUserName, currentUserAvatar, setCurrentUserAvatar}) => {
+
+export default function EditProfileForm() {
+    const {
+        currentUserName,
+        setCurrentUserName,
+        currentUserAvatar,
+        setCurrentUserAvatar
+    } = useContext(CurrentUserContext);
     const handleNameInput = (e) => {
         setCurrentUserName(e.target.value);
     };
@@ -12,9 +20,9 @@ const EditProfileForm = ({currentUserName, setCurrentUserName, currentUserAvatar
             <h2>Your informations</h2>
             <label>
                 Your name
-                <input type="text" value={currentUserName} onChange={handleNameInput}/>
+                <input type="text" value={currentUserName} onChange={handleNameInput} />
             </label>
-            <br/>
+            <br />
             <label>
                 Your avatar URL :
                 <input
@@ -27,4 +35,3 @@ const EditProfileForm = ({currentUserName, setCurrentUserName, currentUserAvatar
     );
 }
 
-export default EditProfileForm;

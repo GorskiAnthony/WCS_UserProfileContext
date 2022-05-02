@@ -6,14 +6,11 @@ export default function Header({currentUserAvatar, currentUserName}) {
     return (
         <header>
             <nav>
-                <NavLink exact to="/">
+                <NavLink to="/">
                     Home
                 </NavLink>
-                <NavLink exact to="/profile">
-                    <UserAvatar
-                        currentUserAvatar={currentUserAvatar}
-                        currentUserName={currentUserName}
-                    />
+                <NavLink to="/profile">
+                    <UserAvatar />
                 </NavLink>
             </nav>
         </header>
